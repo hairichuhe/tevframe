@@ -1,0 +1,6 @@
+{
+    "host":"http://127.0.0.1/api",         //主机地址
+    "auth_host":"http://127.0.0.1",        //认证地址
+    "client_id":"clientapp",               //app授权id
+    "client_secret":"123456",              //app授权密码
+}

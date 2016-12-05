@@ -1,0 +1,180 @@
+
+<style>
+div.btn-group>button.btn{
+	width: 100%;
+	font-size: 12px;
+	text-align: left;
+}
+div.btn-group>button.btn>span.caret{
+	float: right;
+	margin-left: -10px;
+    margin-top: 6px;
+}
+div.btn-group>ul.dropdown-menu{
+	width: 100%;
+}
+</style>
+<div class="modal fade in" id="portalDialog" style="display: block;">
+
+	<div style="width: 70%; min-width: 800px;" class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" type="button" v-link="{path:'/user'}">x
+				</button>
+				<template v-if="$route.params.id==-1">
+					<h4 class="modal-title">新增用户</h4>
+				</template>
+				<template v-else>
+					<h4 class="modal-title">修改用户</h4>
+				</template>
+			</div>
+			<div class="modal-body" id="alertModalCon">
+				<validator name="validation">
+				<form @submit.prevent  id="save-form" action="/user/save" class="form-horizontal" novalidate>
+					<input type="hidden" name="id" value="{{$route.params.id}}">
+					<div class="row show-grid">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-3 control-label"> <b class="red">*</b>
+									姓名
+								</label>
+								<div class="col-md-9">
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="fullname" class="form-control" v-model="fullname" v-validate:fullname="['required']" autocomplete="off">   
+										<label class="error" v-if="$validation.fullname.required">姓名不能为空!</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-4 control-label"> <b class="red">*</b>
+									用户账号
+								</label>
+								<div class="col-md-8">
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="username" class="form-control" v-model="username" v-validate:username="['required']" autocomplete="off"> 
+										<label class="error" v-if="$validation.username.required">用户账号不能为空!</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<template v-if="$route.params.id==-1">
+						<div class="row show-grid">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-3 control-label"> <b class="red">*</b>
+										密码
+									</label>
+									<div class="col-md-9">
+										<input detect-change="off" detect-blur="off" initial="off" type="password" class="form-control" name="password" v-model="password" v-validate:password="['required']" autocomplete="off"> 
+											<label class="error" v-if="$validation.password.required">密码不能为空!</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-4 control-label"> <b class="red">*</b>
+										确认密码
+									</label>
+									<div class="col-md-8">
+										<input detect-change="off" detect-blur="off" initial="off" type="password" class="form-control" id="confirm_password"  v-model="confirm_password" v-validate:cpassword="['required']"> 
+											<label class="error" v-if="$validation.cpassword.required">确认密码不能为空!</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</template>
+
+					<div class="row show-grid">
+						<div class="col-md-6">
+							<div class="form-group"><!--  style="overflow:visible;" -->
+								<label class="col-md-3 control-label"> <b class="red">*</b>
+									角色
+								</label>
+								<div class="col-md-9">		 
+							        <v-select multiple placeholder="请选择 ..." style="width:100%;" :value.sync="rolesSelect" :options="roles" id="roles">
+									</v-select>
+									<input detect-change="off" detect-blur="off" initial="off" type="hidden" name="roles" v-model="rolesSelect" v-validate:roleselect="['required']">
+										<label class="error" v-if="$validation.roleselect.required">角色不能为空!</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-4 control-label">所属客户</label>
+								<div class="col-md-8">
+									<v-select placeholder="请选择 ..." style="width:100%;" :options="customs" :value.sync="customsSelect">
+									</v-select>
+									<input type="hidden" name="cusId" v-model="customsSelect">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row show-grid">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-3 control-label">所属部门</label>
+								<div class="col-md-9">
+									<v-select placeholder="请选择 ..." style="width:100%;" :value.sync="departmentsSelect" :options="departments">
+									</v-select>
+									<input type="hidden" name="depId" v-model="departmentsSelect">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-4 control-label">手机号</label>
+								<div class="col-md-8">
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="mobile" class="form-control" v-model="mobile" v-validate:mobile="['isMobile']"> 
+										<label class="error" v-if="$validation.mobile.isMobile">手机号格式不对</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row show-grid">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Email</label>
+								<div class="col-md-9">
+									<input detect-change="off" detect-blur="off" initial="off" type="text" class="form-control" name="email" v-model="email" v-validate:email="['isEmail']">  
+										<label class="error" v-if="$validation.email.isEmail">邮箱格式不对!</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-md-4 control-label">状态</label>
+								<div class="col-md-8">
+									<v-checkbox v-if="$route.params.id==-1"></v-checkbox>
+									<v-checkbox v-else :checked="enabled"></v-checkbox>
+								</div>
+							</div>
+						</div>									
+					</div>
+
+					<div class="row show-grid">
+						<div class="col-md-9">
+							<div class="form-group">
+								<label class="col-md-2 control-label">描述</label>
+								<div class="col-md-10">
+									<textarea class="form-control" rows="3" name="description">{{description}}</textarea>
+								</div>
+							</div>
+						</div>			
+					</div>
+				</form>
+				</validator>         
+
+			</div>
+			<div class="modal-footer">
+				<button aria-hidden="true" data-dismiss="modal" class="btn btn-default btn-sm btn-close" type="button" v-link="{path:'/user'}">取消</button>
+				<button class="btn btn-primary btn-sm ok" type="button" @click="save">确定</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "la-frame",
+  "version": "1.0.0",
+  "description": "la-frame",
+  "main": "no",
+  "scripts": {
+    "test": "fis3 server stop && fis3 server clean && fis3 release -r ./la-web && fis3 server start && supervisor ./mysql-api/api.js",
+    "start":"fis3 server stop && fis3 server clean && fis3 release -r ./la-web && fis3 server start && node ./mysql-api/api.js",
+    "bbb":"start git-bash"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no"
+  },
+  "author": "",
+  "license": "ISC"
+}

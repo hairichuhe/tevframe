@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>络安</title> 
+	<link href="/static/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+	<link href="/static/css/nifty.min.css" rel="stylesheet">
+    <link href="/static/css/zeta.css" rel="stylesheet"> 
+    <link href="/static/css/style.css" rel="stylesheet">
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/static/libs/pace/themes/pace-theme-minimal.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/themes/themes-mainnav/theme-purple.min.css" id="theme">
+</head>
+
+<body id="cdtop"> 
+
+<div id="container" class="effect mainnav-lg aside-in"> 
+
+<!--头部 /^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^/-->
+		<i-header> </i-header>
+<!--头部end /^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^/-->
+
+
+		<div class="boxed"> 
+<!--植入内容 /||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||/-->
+			<div id="content-container"> 
+            	<!-- <div id="zeta-lanmu" class="box-shadow-lg1">
+					<button type="button" class="btn anniu1">（跟随变化）anniu1</button>
+					<button type="button" class="btn btn-default">（默认样式）Default</button>
+				</div> -->
+				<router-view></router-view>
+			</div> 
+<!--植入内容end /||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||/-->
+
+<!--左边导航 /<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<</-->
+			<i-mainnav> </i-mainnav>
+<!--左边导航end /<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<</-->
+
+<!--右边导航 />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/-->
+            <i-rightnav> </i-rightnav>
+<!--右边导航end />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/-->
+		</div> 
+        
+
+<!--底部栏 /VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/-->     
+        <i-footer> </i-footer>
+<!--底部栏end /VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/-->
+
+<!-- 返回顶部 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲-->
+		<button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+<!-- 返回顶部 end ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲-->
+	
+<!--设置 /xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/-->     
+		<i-themeconfig> </i-themeconfig>
+<!--设置end /xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/-->
+	</div> 
+
+
+	<script src="/static/libs/jQuery/jquery-2.2.0.min.js"></script><!--ignore-->
+	<script src="/static/libs/bootstrap/js/bootstrap.min.js"></script><!--ignore-->
+
+	<script src="/static/libs/pace/pace.min.js"></script><!--ignore-->
+	<script src="/static/libs/ztree/jquery.ztree.all-3.5.min.js"></script><!--ignore-->
+	<script src="/static/libs/echarts/echarts.min.js"></script><!--ignore-->
+ 	<script src="/static/libs/mod/mod.js"></script>
+ 	<script type="text/javascript">
+ 		require('./index.js');
+ 	</script>
+	<script src="/static/libs/jQuery/FastClick.min.js"></script><!--ignore-->
+	<script src="/static/js/nifty.min.js"></script><!--ignore-->
+
+<i title="Raphaël Colour Picker" style="display: none; color: transparent;"></i>
+</body>
+</html>

@@ -1,0 +1,12 @@
+global.access_tokenObj="hahahah";
+var str=Math.random().toString(36);
+console.log(str);
+var str1=0.88888.toString(36);
+var str2=0.88888.toString(36);
+console.log(str1);
+console.log(str2);
+console.log(Date());
+console.log(Date.now());
+var ttt=(Math.random()/Date.now()).toString(36).replace(/\d/g,'').slice(1);
+console.log(ttt);
+console.log(ttt.length);

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset=UTF-8"utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>登录</title>
+
+
+	<link href="/static/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+
+	<!--Nifty Stylesheet [ REQUIRED ]-->
+	<link href="/static/css/nifty.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/themes/themes-navbar/theme-lime.min.css" id="theme">
+
+	<script type="text/javascript">
+		var isCompated=false;
+
+		function isIE(){
+		    if(!!window.ActiveXObject || "ActiveXObject" in window){
+		        return true;
+		    }else{
+		        return false;
+		    }
+		};
+
+		function IEVersion(){
+		    var rv = -1;
+		    if (navigator.appName == 'Microsoft Internet Explorer'){
+		        var ua = navigator.userAgent;
+		        var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+
+		        if (re.exec(ua) != null){
+		            rv = parseFloat( RegExp.$1 );
+		        }
+		    } else if (navigator.appName == 'Netscape'){
+		        var ua = navigator.userAgent;
+		        var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+		        if (re.exec(ua) != null){
+		          rv = parseFloat( RegExp.$1 );
+		        }
+		    }
+		    
+		    return rv;
+		};
+		if (isIE()) {//IE浏览器
+		    if (IEVersion() < 10) {
+		        isCompated=false;
+		    } else {
+		        isCompated=true;
+		    }
+		}else{
+		    isCompated=true;
+		};
+		if(!isCompated){
+		    window.location.href='/error/nonsupport.html';
+		}
+	</script>
+
+		
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+
+<body>
+	<div id="container" class="cls-container">
+		
+		<!-- BACKGROUND IMAGE -->
+		<!--===================================================-->
+		<div id="bg-overlay" class="bg-img img-balloon" style='background-image: url("/static/img/bg-img/bg-img-2.jpg");'></div>
+		
+		
+		<!-- HEADER -->
+		<!--===================================================-->
+		<!-- <div class="cls-header cls-header-lg">
+			<div class="cls-brand">
+				<a class="box-inline" href="index.html">
+					<img alt="Nifty Admin" src="img/logo.png" class="brand-icon">
+					<span class="brand-title"><span class="text-thin" id="systemName"></span></span>
+				</a>
+			</div>
+		</div> -->
+		<!--===================================================-->
+		
+		
+		<!-- LOGIN FORM -->
+		<!--===================================================-->
+		<div class="cls-content" style="padding: 20vh 15px 15px;">
+			<div class="cls-content-sm panel">
+				<div class="panel-body">
+					<div class="bg-primary">
+						<div class="cls-brand">
+							<a class="box-inline">
+								<img width="26" height="23" src="/static/img/logo.svg"><img width="124" height="25" src="/static/img/logotxt.svg">
+							</a>
+						</div>
+					</div><br>
+					<form class="form" id="loginForm">
+						<input type="hidden" name="client_id" value="clientapp">
+						<input type="hidden" name="client_secret" value="123456">
+						<input type="hidden" name="grant_type" value="password">
+						<validator name="validation">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon"><i class="fa fa-user"></i></div>
+								<input type="text" detect-change="off" detect-blur="off" initial="off" class="form-control" placeholder="用户名" name="username" v-validate:username="['required']" />
+							</div>
+					  			<label class="error" v-if="$validation.username.required">
+					  				用户名不能为空!
+					  			</label>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+								<input detect-change="off" detect-blur="off" initial="off" type="password" class="form-control" placeholder="密码" @keyup.13="login" name="password" v-validate:password="['required']">
+							</div>
+					  			<label class="error" v-if="$validation.password.required">
+					  				密码不能为空!
+					  			</label>
+						</div>
+						<div class="row" style="margin-bottom:15px;">
+							<div class="col-xs-12 text-left">
+								<div class="input-group">
+									<div class="input-group-addon"><i class="fa fa-key fa-lg juli"></i></div>
+									<input type="text" @keyup.13="login" id="conVerificationCode" placeholder="验证码" class="form-control">
+									<div id="verificationCode" class="input-group-addon" style="width:70px;padding-top:0;padding-bottom:0;overflow:hidden; cursor: pointer;color:#fff;position:relative;"><!-- background: rgb(68, 68, 68);<h4 style="margin:0; font-size:14px;letter-spacing:4px;"></h4> --></div>
+								</div>
+							</div>
+							<!-- <div class="col-xs-4">
+								<div class="input-group text-center" style="width:100%">
+									<h4 id="verificationCode" class="form-control bgbian" style="width:100%; border-radius:5px; color:#fff;letter-spacing:4px;font-weight:weight; font-size:14px;margin:0px"></h4>
+								</div>
+							</div> -->
+						</div>
+
+						<div class="row" style="margin-bottom:15px;">
+							<div class="col-xs-12 text-left checkbox">
+								<label class="form-checkbox form-normal">
+								<input id="rememeber" type="checkbox"> 记住用户名
+								</label>
+							</div>
+						</div>
+						<button type="button" class="btn btn-success btn-lg btn-block" @click="login">
+							<i class="fa fa-sign-in fa-fw"></i> 登录
+						</button>
+						<!-- <button class="btn btn-primary btn-lg btn-block" >Sign In登录</button> -->
+						</validator>
+					</form>
+					<input type="hidden" id="nowCode">
+				</div>
+			</div>
+		</div>
+		<!--===================================================-->
+		
+		
+		<!-- DEMO PURPOSE ONLY -->
+		<!--===================================================-->
+		<div class="demo-bg">
+			<div id="demo-bg-list">
+				<div class="demo-loading"><i class="fa fa-refresh"></i></div>
+				<img class="demo-chg-bg bg-trans" src="/static/img/bg-img/thumbs/bg-trns.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="/static/img/bg-img/thumbs/bg-img-1.jpg" alt="Background Image">
+				<img class="demo-chg-bg active" src="/static/img/bg-img/thumbs/bg-img-2.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="/static/img/bg-img/thumbs/bg-img-3.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="/static/img/bg-img/thumbs/bg-img-4.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="/static/img/bg-img/thumbs/bg-img-5.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="/static/img/bg-img/thumbs/bg-img-6.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="/static/img/bg-img/thumbs/bg-img-7.jpg" alt="Background Image">
+			</div>
+		</div>
+		<!--===================================================-->
+		
+		
+		
+	</div>
+	<!--===================================================-->
+	<!-- END OF CONTAINER -->
+
+
+		
+	<!--JAVASCRIPT-->
+	<!--=================================================-->
+
+	<!--jQuery [ REQUIRED ]-->
+	<script src="/static/libs/jQuery/jquery-2.2.0.min.js"></script><!--ignore-->
+	<script src="/static/libs/jQuery/jQuery.cookie.js"></script><!--ignore-->
+
+
+	<!--BootstrapJS [ RECOMMENDED ]-->
+	<script src="/static/libs/bootstrap/js/bootstrap.min.js"></script><!--ignore-->
+
+	
+	<!-- Plugins [ OPTIONAL ]-->
+	<script src="/static/libs/jQuery/FastClick.min.js"></script><!--ignore-->
+
+	<script src="/static/js/bg-images.js"></script><!--ignore-->
+
+	<script src="/static/libs/mod/mod.js"></script>
+ 	<script type="text/javascript">
+		require('./login');
+		window.vueUI=require('vueUI');
+ 		// $("#systemName").html(vueUI.conf.systemName);
+ 		//$("#verificationCode").html(Math.random().toString(36).substr(2,4));
+ 		$('input[name="username"]').val($.cookie("user_name"));
+ 		if($.cookie("user_name")){
+ 			$("#rememeber").prop("checked",true)
+ 		}
+
+ 		$("#verificationCode").click(function(){
+ 			draw();
+ 		})
+ 		draw();
+ 		function draw(){
+ 			$("#verificationCode").html("");
+ 			var code='';
+ 			var str = [
+                'a','b','c','d','e','f','g','h','j','k','m',
+                'p','q','r','s','t','x','u','v','y','z','w','n',
+                '2','3','4','5','6','7','8','9'
+            ];
+            var leng=str.length-1;
+            for(var i=0;i<4;i++){
+            	Math.floor(Math.random()*leng)
+            	code+=str[Math.floor(Math.random()*leng)]
+            };
+ 			$("#nowCode").val(code);
+ 			for(var i=0;i<code.length;i++){
+ 				drawCode(code.substr(i,1),i)
+ 			}
+ 			drawLines();
+ 		}
+ 		
+ 		function drawCode(code, index){
+ 			var dom = document.createElement("span");
+ 			var colors = [ "green", "red", "blue", "#53da33", "#AA0000", "#FFBB00" ];
+        	var fonts = [ "Times New Roman",  "Georgia", "Serif", "sans-serif", "arial", "tahoma", "Hiragino Sans GB" ];
+ 
+	        dom.style.cssText = [
+	            "font-size:" + randint(24, 30) + "px",
+	            "color:" + colors[randint(0, colors.length - 1)],
+	            "position: absolute",
+	            "left:" + randint(15* index, 15* index + 3) + "px",
+	            "top:0",
+	            "transform:rotate(" + randint(-20, 20) + "deg)",
+	            "-ms-transform:rotate(" + randint(-20, 20) + "deg)",
+	            "-moz-transform:rotate(" + randint(-20, 20) + "deg)",
+	            "-webkit-transform:rotate(" + randint(-20, 20) + "deg)",
+	            "-o-transform:rotate(" + randint(-20, 20) + "deg)",
+	            "font-family:" + fonts[randint(0, fonts.length - 1)],
+	            "font-weight:" + randint(400, 900)
+	        ].join(";");
+	 		
+	        dom.innerHTML = code;
+	        $("#verificationCode").append(dom);
+	 
+	        return dom;
+ 		}
+ 		function drawLines(){
+ 			var lineColors = [ "#888888", "#FF7744", "#888800", "#008888" ];
+        	var fonts = [ "Times New Roman",  "Georgia", "Serif", "sans-serif", "arial", "tahoma", "Hiragino Sans GB" ];
+ 			// lineDoms = [];
+	        for(var i=0; i<8; i++){
+	            var dom = document.createElement("div");
+	 
+	            dom.style.cssText = [
+	                "position: absolute",
+	                "opacity: " + randint(3, 8) / 10,
+	                "width:" + randint(1, 5) + "px",
+	                "height:" + randint(1, 30) + "px",
+	                "background: " + lineColors[randint(0,lineColors.length - 1)],
+	                "left:" + randint(0, 52) + "px",
+	                "top:" + randint(-10, 30) + "px",
+	                "transform:rotate(" + randint(60, 90) + "deg)",
+	                "-ms-transform:rotate(" + randint(60, 90) + "deg)",
+	                "-moz-transform:rotate(" + randint(60, 90) + "deg)",
+	                "-webkit-transform:rotate(" + randint(60, 90) + "deg)",
+	                "-o-transform:rotate(" + randint(60, 90) + "deg)",
+	                "font-family:" + fonts[randint(0,fonts.length - 1)],
+	                "font-weight:" + randint(400, 900)
+	            ].join(";");
+	            $("#verificationCode").append(dom);
+	 
+	            // this.lineDoms.push(dom);
+	        }
+ 		}
+ 		function randint(n,m){
+                var c = m-n+1;
+                var num = Math.random() * c + n;
+                return  Math.floor(num);
+            }
+	</script>
+
+	
+	<!--
+
+	REQUIRED
+	You must include this in your project.
+
+	RECOMMENDED
+	This category must be included but you may modify which plugins or components which should be included in your project.
+
+	OPTIONAL
+	Optional plugins. You may choose whether to include it in your project or not.
+
+	DEMONSTRATION
+	This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+	SAMPLE
+	Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+	Detailed information and more samples can be found in the document.
+
+	-->
+		
+
+</body>
+</html>

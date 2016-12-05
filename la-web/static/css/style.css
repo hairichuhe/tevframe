@@ -1,0 +1,44 @@
+label.error {
+	color: #a94442;
+	margin-top: 5px;
+	display: inline-block;
+	font-weight: bold;
+}
+.red{
+	color:red;
+}
+
+.form-horizontal .control-label{
+	 text-align:left; 
+	 padding-left:30px;
+}
+.zeta-icon1{color:#564aa3;}
+.zeta-icon2{color:#564aa3;}
+.zeta-icon3{color:#1797be;}
+.zeta-icon4{color:#1797be;}
+.zeta-icon5{color:#51c6ea;}
+.zeta-icon6{color:#51c6ea;}
+.zeta-icon7{color:#27c24c;}
+.bgbian{
+	background-color: #1e9983;
+}
+.bs-searchboxS+.bs-actionsbox {
+	padding: 0 8px 4px
+}
+.bs-searchboxS input.form-control {
+	margin-bottom: 0;
+	width: 100%
+}
+.bs-actionsbox, .bs-searchboxS {
+	padding: 4px 8px
+}
+
+.pointer{
+	cursor: pointer
+}
+
+.pointer.disabled, .pointer[disabled]{
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.15;
+}

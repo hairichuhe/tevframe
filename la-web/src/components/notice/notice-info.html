@@ -1,0 +1,28 @@
+<style>
+</style>
+<div class="modal fade in" id="noticeinfoDialog" style="display: block;z-index:999999;background-color: rgba(0, 0, 0, 0.5);opacity:1">
+    <div style="width: 70%; min-width: 800px;background-color:#000" class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" @click="close">x</button>
+                <h4 class="modal-title">公告详情页</h4>
+            </div>
+            <div class="modal-body" style="padding-top:0">
+                <form id="notice-info" action="">
+                        <div class="row show-grid">
+                            <div class="title-input" style="text-align:center">
+                                <h3 style="text-align:center;color:#404040;font:bold 36px/1 'Microsoft Yahei'"> {{title}}</h3>
+                                <small class="text-muted" style="text-align:center;color:#888;font:12px/1 Arial,'Sim sun'"> {{createDate}}</small>
+                            </div>                      
+                        </div>
+                        
+                        <div class="row show-grid">
+                            <div class="col-md-12">
+                                 <p style="text-indent:40px;font-size: 20px">{{content}}</p>
+                            </div>
+                        </div>                          
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

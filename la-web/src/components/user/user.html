@@ -1,0 +1,62 @@
+<page-title
+	:items="[{ message: '首页',url:'/#!/' },{ message: '用户',url:'' }]"></page-title>
+
+<div id="userRoot" style="padding: 20px 25px 0px; font-size: 14px;">
+	<form @submit.prevent v-on:onload="search()" id="query-form" class="form-horizontal" role="form" method="post" action="/user/query">
+		<input type="hidden" name="page_pageNo" id="pageNo" value="1" />
+		<input type="hidden" name="page_pageSize" id="pageSize" value="10" />
+		<input type="hidden" name="page_order" id="order" value="desc" />
+		<input type="hidden" name="page_orderBy" id="orderBy" value="id" />
+		<table border="0" class="juli5 yj3-top anniu1 w100 bgbian  txtcolor">
+			<td>
+				<h4>用户管理</h4>
+				<button class="btn btn-tm" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+					<i class="fa fa-filter"></i> 展开
+				</button>
+
+				<button type="button" class="btn btn-tm btn-labeled fa fa-plus" @click="goAdd">新增</button>
+
+				<!--         <button type="button" class="btn btn-tm btn-labeled fa fa-edit" v-on:click="goEdit">编辑</button> -->
+
+				<button type="button" class="btn btn-tm btn-labeled fa fa-remove" v-on:click="goDel">删除</button>
+
+
+				<div class="pull-right">
+					<button type="button" class="btn btn-tm" @click="search()">确定</button>
+				</div>
+				<div class=" pull-right w200px">
+					<input type="text" name="filter_LIKES_fullname_OR_username"  placeholder="按姓名搜索或者账号搜索" class="form-control bianno">
+				</div>
+				<!-- Button trigger modal -->
+
+				<!-- 展开 -->
+				<div class="collapse" id="collapseExample1">
+					<div>
+						<div class="btn-group juli2-up btn-group-sm" data-toggle="buttons">
+							<span class="btn1">邮箱：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<div class=" pull-right w200px">
+								<input type="text" placeholder="邮箱" name="filter_LIKES_email" class="form-control bianno">
+							</div>  
+						</div>
+					</div>
+
+					<div>
+						<div class="btn-group juli2-up btn-group-sm" data-toggle="buttons">
+							<span class="btn1">手机：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<div class=" pull-right w200px">
+								<input type="text" placeholder="手机" name="filter_LIKES_mobile" class="form-control bianno">
+							</div>  
+						</div>
+					</div>
+
+					<div class="juli2-up">
+						<button type="button" id="submitQuery" @click="search()" class="btn btn-tm">确定</button>
+					</div>
+				</div>
+			</td>
+		</table>
+	</form>
+	<!-- 列表展示 -->
+	<vue-grid v-ref:grid :page="page"  :columns="gridColumns" ></vue-grid>
+</div>
+<router-view></router-view> 

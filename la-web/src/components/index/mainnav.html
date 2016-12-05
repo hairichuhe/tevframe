@@ -1,0 +1,321 @@
+			<nav id="mainnav-container">
+				<div id="mainnav">
+
+					<!--快捷菜单-->
+					<div id="mainnav-shortcut">
+						<ul class="list-unstyled">
+							<!-- <li class="col-xs-4" data-content="Additional Sidebar">
+								<a class="shortcut-grid" href="#">
+									<i class="fa fa-qrcode fa-lg"></i>
+								</a>
+							</li> -->
+							<li class="col-xs-4" data-content="Notification">
+								<a id="demo-alert" class="shortcut-grid" href="#">
+									<i class="fa fa-bullhorn"></i>
+								</a>
+							</li>
+							<li class="col-xs-4" data-content="Page Alerts">
+								<a id="demo-page-alert" class="shortcut-grid" href="#">
+									<i class="fa fa-bell"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!--快捷菜单 end-->
+
+
+					<!--菜单-->
+					<div id="mainnav-menu-wrap">
+						<div class="nano has-scrollbar">
+							<div class="nano-content">
+								<ul id="mainnav-menu" class="list-group">
+
+									<li class="list-header">功能菜单</li>
+									<!--Menu list item-->
+						 			<li id="{{first.id}}" @click.stop="checkMenu(first.id,first.url)" v-for="first in menus" v-if="first.parentId==null" >
+								 		<a v-if="first.url!=''" @click="goRouter(first.url)" style="cursor: pointer;">
+										 	<i class={{first.ico}}></i>
+										 	<span class="menu-title">{{first.name}}</span>
+									 	</a>
+										<a v-else>	
+											<i class={{first.ico}}></i>
+											<span class="menu-title">{{first.name}}</span>
+											<i class="fa arrow"></i>
+										</a>
+									 	<ul class="collapse">
+											<li id="{{sub.id}}" @click.stop="checkMenu(sub.id)" v-for="sub in menus" v-if="sub.parentId!=null&&sub.parentId==first.id">
+											 	<a style="cursor: pointer;"  @click="goRouter(sub.url)" >
+											 		<i class="fa fa-angle-double-right"></i>{{sub.name}} 
+											 	</a>
+											</li>
+										</ul>
+									</li>
+
+								<template v-if="isAdmin">
+									<!--Category name-->
+									<li class="list-header">栏目分类</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a style="cursor: pointer;" @click="goRouter('/main')">
+											<i class="fa fa-dashboard fa-lg"></i>
+											<span class="menu-title">
+												<strong>仪表盘</strong>
+												<span class="label label-success pull-right">New</span>
+											</span>
+										</a>
+									</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a>
+											<i class="fa fa-th fa-lg"></i>
+											<span class="menu-title">
+												<strong>模式</strong>
+											</span>
+											<i class="fa arrow"></i>
+										</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a style="cursor: pointer;"  @click="togMainnav"><i class="fa fa-caret-right"></i>左侧边栏收缩</a></li>
+											<li><a style="cursor: pointer;" @click="togAside"><i class="fa fa-caret-right"></i>右侧边栏收缩</a></li>
+											<li><a style="cursor: pointer;"  data-type="navbar" data-theme="theme-lime" @click="tradeSkin"><i class="fa fa-caret-right"></i>换肤</a></li>
+											<!--换肤说明data-type="navbar" navbar表示样式所在文件夹data-theme="theme-lime"theme-lime表示样式名-->
+										</ul>
+									</li>
+						
+						
+									<!--Menu list item-->
+									<li>
+										<a style="cursor: pointer;" @click="goRouter('/widgets')">
+											<i class="fa fa-flask fa-lg"></i>
+											<span class="menu-title">
+												<strong>个人面板</strong>
+												<span class="pull-right badge badge-warning">Top</span>
+											</span>
+										</a>
+									</li>
+
+									<!--Menu list item-->
+									<li>
+										<a href="#">
+											<i class="fa fa-th fa-lg zeta-icon2"></i>
+											<span class="menu-title">
+												<strong>开发手册</strong>
+											</span>
+											<i class="fa arrow"></i>
+										</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a href="http://fontawesome.io/icons/" target="_blank"><i class="fa fa-caret-right"></i>图标</a></li>
+											<li><a href="http://v3.bootcss.com/css/" target="_blank"><i class="fa fa-caret-right"></i>Bootstrap V3.5</a></li>
+											<li class="list-divider"></li>
+											<li><a href="http://www.duize.com/v3" target="_blank"><i class="fa fa-caret-right"></i>在线预览</a></li>		
+										</ul>
+									</li>
+						
+									<li class="list-divider"></li>
+						
+									<!--Category name-->
+									<li class="list-header">组件</li>
+						
+									<!--Menu list item-->
+									<li >
+										<a href="#">
+											<i class="fa fa-briefcase fa-lg"></i>
+											<span class="menu-title">UI组件</span>
+											<i class="fa arrow"></i>
+										</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-buttons')"><i class="fa fa-caret-right"></i>按钮</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-checkboxes-radio')"><i class="fa fa-caret-right"></i>选框</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-panels')"><i class="fa fa-caret-right"></i>面板</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-modals')"><i class="fa fa-caret-right"></i>弹出框</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-progress-bars')"><i class="fa fa-caret-right"></i>进度条</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-components')"><i class="fa fa-caret-right"></i>分页与焦点</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-typography')"><i class="fa fa-caret-right"></i>信息面板</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-list-group')"><i class="fa fa-caret-right"></i>列表</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-tabs-accordions')"><i class="fa fa-caret-right"></i>标签与切换</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-alerts-tooltips')"><i class="fa fa-caret-right"></i>选项与提示</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/ui-helper-classes')"><i class="fa fa-caret-right"></i>位置与式样</a></li>
+											
+										</ul>
+									</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a href="#">
+											<i class="fa fa-table fa-lg"></i>
+											<span class="menu-title">表单类</span>
+											<i class="fa arrow"></i>
+										</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a style="cursor: pointer;" @click="goRouter('/forms-general')"><i class="fa fa-caret-right"></i>输入表单</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/forms-components')"><i class="fa fa-caret-right"></i>表单组件</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/forms-validation')"><i class="fa fa-caret-right"></i>表单验证</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/forms-wizard')"><i class="fa fa-caret-right"></i>向导表单</a></li>
+											
+										</ul>
+									</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a style="cursor: pointer;" @click="goRouter('/tables')">
+											<i class="fa fa-list fa-lg"></i>
+											<span class="menu-title">表格</span>
+										</a>
+									</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a style="cursor: pointer;" @click="goRouter('/charts')">
+											<i class="fa fa-line-chart fa-lg"></i>
+											<span class="menu-title">图表</span>
+										</a>
+									</li>
+						
+									<li class="list-divider"></li>
+						
+									<!--Category name-->
+									<li class="list-header">页面组</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a href="#">
+											<i class="fa fa-envelope fa-lg"></i>
+											<span class="menu-title">
+												邮箱模式
+												<span class="label label-danger pull-right">Hot</span>
+											</span>
+										</a>
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a style="cursor: pointer;" @click="goRouter('/mailbox')">列表模式</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/mailbox-message')">详情模式</a></li>
+											<li><a style="cursor: pointer;" @click="goRouter('/mailbox-compose')">编辑模式</a></li>
+											
+										</ul>
+									</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a href="#">
+											<i class="fa fa-file fa-lg"></i>
+											<span class="menu-title">页面</span>
+											<i class="fa arrow"></i>
+										</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-blank.html" target="_blank">内容页面</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-profile.html" target="_blank">评论页面</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-search-results.html" target="_blank">搜索页面</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-faq.html" target="_blank">FAQ页面</a></li>
+											<li class="list-divider"></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-404.html" target="_blank">404 错误</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-500.html" target="_blank">500 错误</a></li>
+											<li class="list-divider"></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-login.html" target="_blank">登录页</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-register.html" target="_blank">注册页</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-password-reminder.html" target="_blank">取回密码页</a></li>
+											<li><a href="http://www.themeon.net/nifty/wb/v2.1/pages-lock-screen.html" target="_blank">锁屏页</a></li>
+											
+										</ul>
+									</li>
+
+									<!--Menu list item-->
+									<li>
+										<a href="#">
+											<i class="fa fa-plus-square fa-lg"></i>
+											<span class="menu-title">Menu Level</span>
+											<i class="fa arrow"></i>
+										</a>
+
+										<!--Submenu-->
+										<ul class="collapse">
+											<li><a href="#">二级栏目</a></li>
+											<li><a href="#">二级栏目</a></li>
+											<li><a href="#">二级栏目</a></li>
+											<li class="list-divider"></li>
+											<li>
+												<a href="#">二级栏目<span class="fa plus-minus"></span></a>
+
+												<!--Submenu-->
+												<ul class="collapse">
+													<li><a href="#">三级栏目</a></li>
+													<li><a href="#">三级栏目</a></li>
+													<li><a href="#">三级栏目</a></li>
+													<li><a href="#">三级栏目</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="#">二级栏目<span class="fa plus-minus"></span></a>
+
+												<!--Submenu-->
+												<ul class="collapse">
+													<li><a href="#">三级栏目</a></li>
+													<li><a href="#">三级栏目</a></li>
+													<li><a href="#">三级栏目</a></li>
+													<li class="list-divider"></li>
+													<li><a href="#">三级栏目</a></li>
+													<li><a href="#">三级栏目</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</template>
+								</ul>
+
+
+								<!--Widget-->
+								<!--================================-->
+								<div class="mainnav-widget">
+
+									<!-- Show the button on collapsed navigation -->
+									<div class="show-small">
+										<a href="#" data-toggle="menu-widget" data-target="#demo-wg-server">
+											<i class="fa fa-desktop"></i>
+										</a>
+									</div>
+
+									<!-- Hide the content on collapsed navigation -->
+									<div id="demo-wg-server" class="hide-small mainnav-widget-content">
+										<ul class="list-group">
+											<li class="list-header pad-no pad-ver">服务器状态</li>
+											<li class="mar-btm">
+												<span class="label label-primary pull-right">15%</span>
+												<p>CPU</p>
+												<div class="progress progress-sm">
+													<div class="progress-bar progress-bar-primary" style="width: 15%;">
+														<span class="sr-only">15%</span>
+													</div>
+												</div>
+											</li>
+											<li class="mar-btm">
+												<span class="label label-purple pull-right">75%</span>
+												<p>存储</p>
+												<div class="progress progress-sm">
+													<div class="progress-bar progress-bar-purple" style="width: 75%;">
+														<span class="sr-only">75%</span>
+													</div>
+												</div>
+											</li>
+											<li class="pad-ver"><a href="#" class="btn btn-success btn-bock">查看详情</a></li>
+										</ul>
+									</div>
+								</div>
+								<!--================================-->
+								<!--End widget-->
+
+							</div>
+						</div>
+					</div> 
+
+				</div> 
+			</nav>

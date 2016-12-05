@@ -1,0 +1,9 @@
+var a=1234566543219;
+var b=5266465165456456461646516;    // 最大临界值
+var c=8950;
+console.log(c.toString().length);
+console.log((c.toString().substr(0,1)-0+1)*Math.pow(10,c.toString().length-1));
+
+console.log(a);
+console.log(b);
+console.log(a^b);

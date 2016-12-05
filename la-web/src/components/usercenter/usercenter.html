@@ -1,0 +1,119 @@
+
+<style>
+
+.red {
+    color: red;
+}
+
+</style>
+<page-title
+	:items="[{ message: '首页',url:'/#!/' },{ message: '个人中心',url:'' }]"></page-title>
+<div id="page-content">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">个人设置</h4>
+				</div>
+				<div class="modal-body" id="alertModalCon">
+					<form id="save-form" action="/user/save_curr">
+						<input type="hidden" name="id"  v-model="id">
+						<validator name="validation">
+
+						<span id="cons">
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> <b class="red">*</b>
+										用户名
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="fullName" class="form-control" v-model="fullName" v-validate:fullname="['required']">  
+										<label class="error" v-if="$validation.fullname.required">用户名不能为空!</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> <b class="red">*</b>
+										用户账号
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="username" class="form-control" v-model="username" v-validate:username="['required']"> 
+										<label class="error" v-if="$validation.username.required">用户账号不能为空!</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> <b class="red">*</b>
+										手机号
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="mobile" class="form-control" v-model="mobile" v-validate:mobile="{required:true,isMobile:true}">
+										<label class="error" v-if="$validation.mobile.isMobile">手机号格式不对</label>
+										<label class="error" v-if="$validation.mobile.required">手机号不能为空</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> 
+										email
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="text" name="email" class="form-control" v-model="email" v-validate:email="['isEmail']">
+										<label class="error" v-if="$validation.email.isEmail">邮箱格式不对!</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+						</span>
+
+						<div class="row show-grid">
+							<div class="form-group">
+								
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label" style="text-align:right">状态</label>
+								</div>
+								<div class="col-md-6">
+									<v-checkbox v-if="$route.params.id==-1"></v-checkbox>
+									<v-checkbox v-else :checked="enabled"></v-checkbox>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+						</validator>
+					</form>
+
+				</div>
+				<div class="row show-grid">
+					<div class="form-group">
+						<div style="text-align:center" class="col-md-12">
+							<button class="btn btn-primary" @click="save"><i class="fa fa-check-square-o"></i>保存</button>
+							<button class="btn btn-danger" type="reset" @click="reset"><i class="fa fa-mail-reply"></i>重置</button>
+						</div>	
+						<div style="clear:both"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

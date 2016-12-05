@@ -1,0 +1,35 @@
+<template  v-if="type">
+    <span v-bind:class="type">
+        <template v-for="option in options">
+            <template v-if="value==option.value">
+                <label class="form-radio active"
+                v-bind:class="option.style">
+                <input type='radio' :name="option.name" :value="option.value" checked @click="handleClick" v-model='model'>{{option.display}}
+                </label>
+            </template>
+            <template v-else>
+                <label class="form-radio"
+                v-bind:class="option.style">
+                <input type='radio' :name="option.name" :value="option.value" @click="handleClick" v-model='model'>{{option.display}}
+                </label>
+            </template>
+        </template>
+        <input type="hidden" :name="name" value="{{ value }}">
+    </span>
+</template>
+<template v-else>
+    <template v-for="option in options">
+        <template v-if="value==option.value">
+            <label class="form-radio active"
+            v-bind:class="option.style">
+            <input type='radio' :name="option.name" :value="option.value" checked @click="handleClick" v-model='model'>{{option.display}}
+            </label>
+        </template>
+        <template v-else>
+            <label class="form-radio"
+            v-bind:class="option.style">
+            <input type='radio' :name="option.name" :value="option.value" @click="handleClick" v-model='model'>{{option.display}}
+            </label>
+        </template>
+    </template>
+</template>

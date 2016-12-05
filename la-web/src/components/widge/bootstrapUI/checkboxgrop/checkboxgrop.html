@@ -1,0 +1,17 @@
+<span v-bind:class="type">
+    <template v-for="option in options">
+        <template v-if="option.checked">
+            <label class="form-checkbox active"
+            v-bind:class="option.style">
+            <input type='checkbox' :name="option.name" :value="option.value" :checked='option.checked' @click="handleClick" v-model='model'>{{option.display}}
+            </label>
+        </template>
+        <template v-else>
+            <label class="form-checkbox"
+            v-bind:class="option.style">
+            <input type='checkbox' :name="option.name" :value="option.value" :checked='option.checked' @click="handleClick" v-model='model'>{{option.display}}
+            </label>
+        </template>
+    </template>
+    <input type="hidden" :name="name" value="{{ model }}">
+</span>

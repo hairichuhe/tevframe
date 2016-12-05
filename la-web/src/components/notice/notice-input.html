@@ -1,0 +1,104 @@
+<style>
+.user-ids{
+    overflow: visible;
+}
+
+div.btn-group>button.btn{
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+}
+div.btn-group>button.btn>span.caret{
+    float: right;
+    margin-left: -10px;
+    margin-top: 6px;
+}
+div.btn-group>ul.dropdown-menu{
+    width: 100%;
+}
+
+ .user-ids  button.dropdown-toggle {
+        width: 90%;
+        overflow: hidden;
+        text-overflow:ellipsis; 
+        -o-text-overflow: ellipsis;       
+s}
+
+.user-ids ul.dropdown-menu{
+    max-height:150px;
+    overflow-y:scroll; 
+}
+
+</style>
+<div class="modal fade in" id="portalDialog" style="display: block;">
+    <div style="width: 70%; min-width: 800px;" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" @click="close">x</button>
+                  <h4 class="modal-title">{{formTitle}}</h4> 
+            </div>
+            <div class="modal-body" id="alertModalCon">
+                <form @submit.prevent id="saveForm" action="/notice/save" novalidate class="form-horizontal">
+                    <validator name="validation">
+                        <input type="hidden" name="id" :value="formId" />
+                        <div class="row show-grid">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"> 
+                                        <b class="red">*</b> 标题
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input type="text" detect-change="off" detect-blur="off" initial="off" name="title" class="form-control" v-model="title" v-validate:title="['required']" />
+                                            <label class="error" v-if="$validation.title.required">标题不能为空!
+                                            </label>
+                                    </div>
+                                </div>
+                            </div>                      
+                        </div>
+                        <div class="row show-gird">
+                            <div class="col-md-9">
+                                <div class="form-group user-ids">
+                                    <label class="col-md-2 control-label">
+                                         <b class="red">*</b> 发送给
+                                    </label>
+                                     <div class="col-md-10"  style="">
+                                        <v-checkbox v-else name="allUsers" display-name="所有人" :checked="false" :method="isAll"></v-checkbox>               
+                                        <v-select style="min-width:395px;"  multiple placeholder="请选择 ..." :options="usersAll" :value.sync="selected"> 
+                                        </v-select>                                 
+                                        <input detect-change="off" detect-blur="off" initial="off" type="hidden" :value="selected" name="userIds" id="usersIds" v-validate:userids="['required']"/>  
+                                             <label class="error"  v-if="$validation.userids.required">
+                                                发送给不能为空!
+                                            </label>                         
+                                    </div>
+                                     <div style="clear:both"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row show-grid">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">
+                                        <b class="red">*</b> 内容
+                                    </label>
+                                    <div class="col-md-8">
+                                        <textarea detect-change="off" detect-blur="off" initial="off" class="form-control" rows="5" name="content" v-model="content" v-validate:content="['required']">
+                                        </textarea> 
+                                        <label class="error" v-if="$validation.content.required">内容不能为空!
+                                        </label>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>                          
+                    </validator>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button aria-hidden="true" data-dismiss="modal" class="btn btn-default btn-sm btn-close" type="button" @click="close">取消
+                </button>
+                <button class="btn btn-primary btn-sm ok" type="button" @click="save">确定</button>
+            </div>
+        </div>
+    </div>
+</div>

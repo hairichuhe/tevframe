@@ -1,0 +1,88 @@
+
+<style>
+
+.red {
+    color: red;
+}
+</style>
+<page-title
+	:items="[{ message: '首页',url:'/#!/' },{ message: '个人中心',url:'' }]"></page-title>
+<div id="page-content">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">个人设置</h4>
+				</div>
+				<div class="modal-body" id="alertModalCon">
+					<form id="save-form" action="/user/reset_pass">
+						<input type="hidden" name="id"  v-model="id">
+						<validator name="validation">
+
+						<span id="cons">
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> <b class="red">*</b>
+										原始密码
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="password" name="password_old" class="form-control" v-model="password_old" v-validate:pass="['required']"> 
+									<label class="error" v-if="$validation.pass.required">原始密码不能为空!</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> <b class="red">*</b>
+										新密码
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="password" name="password_new" class="form-control" v-model="password_new" v-validate:passnew="['required']"> 
+									<label class="error" v-if="$validation.passnew.required">新密码不能为空!</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+
+						<div class="row show-grid">
+							<div class="form-group">
+								<div class="col-md-3" style="text-align:right">
+									<label class="col-md-12 control-label"> <b class="red">*</b>
+										确认新密码
+									</label>
+								</div>
+
+								<div class="col-md-6">	
+									<input detect-change="off" detect-blur="off" initial="off" type="password" id="confirmPass" class="form-control" v-validate:conpass="['required']"> 
+									<label class="error" v-if="$validation.conpass.required">确认新密码不能为空!</label>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+						</span>
+						
+						</validator>
+					</form>
+
+				</div>
+				<div class="row show-grid">
+					<div class="form-group">
+						<div style="text-align:center" class="col-md-12">
+							<button class="btn btn-primary" type="submit" @click="save"><i class="fa fa-check-square-o"></i>保存</button>
+							<button class="btn btn-danger" type="reset" @click="reset"><i class="fa fa-mail-reply"></i>重置</button>
+						</div>	
+						<div style="clear:both"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

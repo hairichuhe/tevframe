@@ -1,0 +1,391 @@
+@charset "utf-8";
+/* logo变换 */
+.logoh{ display:none;}
+.logob{ display: block;}
+/* 宽度定义 */
+.zeta-w50p{
+	width:51px;
+	}
+/* 顶部按钮 */
+.zeta-topanjl{
+	margin:10px 10px 0 0;
+	}
+/* 圆角 */
+.yj3-top {
+  -moz-border-radius: 3px 3px 0 0!important;
+  -webkit-border-radius: 3px 3px 0 0!important;
+  border-radius: 3px 3px 0 0!important;
+}
+
+.yj3-down {
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+.yj3-zuo {
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+
+.yj3-you {
+  -moz-border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+/* 宽度 */
+.w100{
+	width:100%!important;
+	}
+.w100px{
+	width:100px!important;
+}
+.w200px{
+	width:200px!important;
+}
+.w220px{
+	width:220px!important;
+}
+.w30px{
+	width:30px!important;
+}
+.w400px
+{
+	width:400px!important;
+	}
+.w600px
+{
+	width:600px!important;
+	}
+/* 距离 */
+.juli5 {
+  padding: 20px 50px;
+}
+.juli {
+  padding: 10px;
+}
+.juli2-up {
+  margin: 10px 0 0 0;
+}
+juli-zuo{
+	padding: 0 10px 0 0;
+	}
+/* 边框 */
+.bianno {
+  border: none !important;
+}
+.bian3 {
+  border-bottom: 1px solid #eee;
+}
+
+/* 背景 */
+.zeta-bgcolor05{
+	background-color:rgba(0,0,0,.03); 
+}
+.zeta-bgcolor1{
+	background-color:rgba(0,0,0,.05); 
+}
+.zeta-bgcolor2{
+	background-color:rgba(0,0,0,.2); 
+}
+.zeta-bgcolorb06{
+	background-color:rgba(255,255,255,.6); 
+}
+.zeta-bgcolorbai{
+	background:#FFF;
+	}
+.zeta-bgcolor-bai2 {
+  background: #F8F8F8;
+}
+.txtcolor{
+	color:#FFF;
+	}
+/* 按钮 */
+.btn-tm {
+  background-color: rgba(0,0,0,.3); 
+  border-color: rgba(0,0,0,.1); 
+  color:#FFF;
+}
+.btn-tm:hover,.btn-tm:focus{
+  background-color: rgba(0,0,0,.3); 
+  border-color: rgba(0,0,0,.1); 
+  color: #fff;
+}
+.btn-tm.active {
+  background-color: rgba(0,0,0,.4); 
+  border-color: rgba(0,0,0,.1); 
+  }
+
+.btn-tmbai {
+  background-color: rgba(255,255,255,.1); 
+  border-color: rgba(0,0,0,.2); 
+  color:rgba(0,0,0,.6); 
+}
+.btn-tmbai:hover,.btn-tmbai:focus{
+  background-color: rgba(255,255,255,.1); 
+  border-color: rgba(0,0,0,.2); 
+  color: rgba(0,0,0,.6); 
+}
+.btn-tmbai.active {
+  background-color: rgba(255,255,255,.2); 
+  border-color: rgba(0,0,0,.2); 
+  }
+  
+.btn1{
+	padding:6px 0;
+	float:left;
+	}
+/* 下拉框 */
+.xiala2 {
+  color: #aaa;
+  border: none;
+  background: #e8e8e8;
+}
+/* 顶部菜单按钮 */
+.zeta-topan{
+	border-radius:3px; 
+	background-color:rgba(0,0,0,.05); !important;
+	height:30px !important;
+	box-shadow: 0 1px 0 rgba(0,0,0,.15); 
+	}
+
+.img-user{
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	margin:5px;
+	}
+/* 左边导航栏距离 */
+
+/* 二级栏目 */
+
+/***导航底部***/
+#dhdb {
+	 position:absolute; 
+	 bottom:0px; 
+	 background-color:rgba(255,255,255,.1); 
+	 width:100%; 
+	 height:50px;
+	 padding:10px;
+	}
+#dhdb p {
+	color:#ccc;
+	}
+/***设置标题***/
+.shezhitxt {
+	font-size: 14px;
+	font-weight: bold;
+	}
+/***右边***/
+#zeta-youb {
+	position: absolute;
+	right:0px;
+	width:50px;
+	padding-top: 50px;
+	top: 0;
+	bottom: 0;
+	min-height: 100%;
+	}
+@media(max-width:414px) {/*<=414*/
+	.erweima {
+		display:none !important;
+		}
+}
+@media(max-width:768px) {/*<=768*/
+	.active-link .hover{
+		width:100px;
+		}
+#footer{
+	position: absolute !important;
+	}
+	/* 顶部按钮 */
+.zeta-topanjl{
+	margin:0;
+	}
+.zeta-topan{
+	 border-radius: 0px;
+  	background-color: transparent;
+ 	 height: 50px !important;
+	 width:50px;
+	 text-align:center;
+	 }
+.navbar-top-links>li>a{
+	padding: 0;
+	}
+.open>.dropdown-menu {
+  display: none;
+}
+#container.mainnav-fixed #mainnav-container {
+  position: absolute;
+}
+}
+
+@media(min-width:1200px){/*>=1200*/
+.has-scrollbar>.nano-content::-webkit-scrollbar {
+display:block
+}
+}
+/********通知动画**************/
+.tongzhi {
+	animation:mymove 1s infinite;
+   -webkit-animation:mymove 1s infinite; /*Safari and Chrome*/
+}
+
+@keyframes mymove
+{
+0% {filter:alpha(opacity=0); /*IE滤镜，透明度50%*/-moz-opacity:0.0; /*Firefox私有，透明度50%*/opacity:0.0;/*其他，透明度50%*/}
+50% {filter:alpha(opacity=100); /*IE滤镜，透明度50%*/-moz-opacity:1.0; /*Firefox私有，透明度50%*/opacity:1.0;/*其他，透明度50%*/}
+100% {filter:alpha(opacity=0); /*IE滤镜，透明度50%*/-moz-opacity:0.0; /*Firefox私有，透明度50%*/opacity:0.0;/*其他，透明度50%*/}
+}
+
+@-webkit-keyframes mymove
+{
+0% {filter:alpha(opacity=0); /*IE滤镜，透明度50%*/-moz-opacity:0.0; /*Firefox私有，透明度50%*/opacity:0.0;/*其他，透明度50%*/}
+50% {filter:alpha(opacity=100); /*IE滤镜，透明度50%*/-moz-opacity:1.0; /*Firefox私有，透明度50%*/opacity:1.0;/*其他，透明度50%*/}
+100% {filter:alpha(opacity=0); /*IE滤镜，透明度50%*/-moz-opacity:0.0; /*Firefox私有，透明度50%*/opacity:0.0;/*其他，透明度50%*/}
+}
+/********居中**************/
+.zhong{
+	margin:0 auto;
+	}
+/********定义图标**************/
+.fa-1x{
+  font-size: 20px;
+}
+#page-title,
+.breadcrumb {
+	background-color: RGBA(255,255,255,.5);/**头部二级栏目//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////改颜色**/
+}
+.breadcrumb {
+	padding: 0 0 10px 25px;
+	border-bottom: 1px solid RGBA(0,0,0,.1);
+	}
+/********菜单横*******************************************************************************************************************************************************************************/
+@media(min-width:768px) {/*<=768*/
+#cdtop.caidantop #container.mainnav-fixed #mainnav-container {
+  position: fixed;
+}
+#cdtop.caidantop #content-container{
+	top:49px!important;
+	}
+	
+#cdtop.caidantop #aside-container{
+	top:99px!important;
+	}
+#cdtop.caidantop #mainnav-container {
+  position: absolute;
+  width: 100% !important;
+  top: 50px !important;
+  z-index: 4;
+  height: 49px;
+  min-height: 49px;
+  padding-top:0;
+  1background:rgba(255,255,255,.2) !important;
+}
+
+#cdtop.caidantop #mainnav-menu-wrap {
+  margin-top: 0px; 
+  padding-top: 0px;
+  height:49px;
+  overflow:visible;
+}
+#cdtop.caidantop #mainnav-menu>li {
+	border-right:1px solid rgba(255,255,255,.2);
+	float:left;
+	list-style-type:none;
+	1background:#FFFFFF;
+	}
+
+#cdtop.caidantop #mainnav-menu ul a{
+	padding: 10px;
+	background:#FFFFFF;
+	}
+#cdtop.caidantop #mainnav-menu ul ul a,
+#cdtop.caidantop #mainnav-menu ul a:hover{
+	padding: 10px;
+	}
+
+#cdtop.caidantop #mainnav {
+	background-color:rgba(0,0,0,.1) !important;
+}
+#cdtop.caidantop #mainnav-menu>.active-link>a, 
+#cdtop.caidantop #mainnav-menu a {
+	padding:16px 10px;
+	}
+#cdtop.caidantop #mainnav-menu ul {
+	background-color: RGBA(255,255,255,1)!important;
+}
+#cdtop.caidantop .mainnav-widget,
+#cdtop.caidantop .list-header,
+#cdtop.caidantop #mainnav-menu>.list-divider,
+#cdtop.caidantop #mainnav-menu li .pull-right,
+#cdtop.caidantop #mainnav-shortcut,	
+#cdtop.caidantop #mainnav-menu li .label{
+	display:none;
+	}
+#cdtop.caidantop #mainnav-menu>li>a:hover,
+#cdtop.caidantop #mainnav-menu>.active-link>a
+{
+  box-shadow: inset 0 4px 0 0 rgba(255,255,255,1) !important;
+}
+
+
+#cdtop.caidantop #mainnav-menu ul a:hover, 
+#cdtop.caidantop .menu-popover .sub-menu ul a:hover {
+  background-color: RGBA(0,0,0,.1)!important;
+  color: #333!important;
+}
+#cdtop.caidantop #mainnav-menu i {
+  padding:0 5px;
+}
+
+#cdtop.caidantop .nano>.nano-content,
+#cdtop.caidantop .nano {
+  overflow: visible;
+}
+#cdtop.caidantop .nano.has-scrollbar>.nano-content {
+  overflow-y: visible;
+}
+
+#cdtop.caidantop #container.aside-in #aside {
+	padding-top: 0px;
+}
+#cdtop.caidantop #container.mainnav-lg #content-container{
+	padding-left: 0px;
+	}
+#cdtop.caidantop #mainnav-menu>.active-link>a, 
+#cdtop.caidantop #mainnav-menu>.active-link>a:hover {
+	padding-left: 10px;
+}
+#cdtop.caidantop .menu-title{
+	padding:0 10px 0 0;
+	vertical-align: -5%;
+	}
+	
+#cdtop.caidantop #container.mainnav-sm #mainnav-menu a:hover {
+   padding: 16px 10px!important;
+}
+#cdtop.caidantop #container.mainnav-sm #content-container{
+	padding-left: 0px;
+	}
+#cdtop.caidantop #mainnav-menu a .arrow{
+	padding: 3px 0;
+}
+#cdtop.caidantop .menu-popover>.popover-content>.single-content {
+  padding: 16px 14px;
+  display: block;
+  white-space: nowrap;
+}
+#cdtop.caidantop #container.mainnav-sm #mainnav-menu a .arrow{
+	padding: 6px 7px;
+	}
+#cdtop.caidantop #container.mainnav-sm #mainnav-menu .active-link>a{
+	padding:16px 16px 16px 15px;}
+#cdtop.caidantop #container.mainnav-sm #mainnav-menu>.active-link a:hover{
+	padding:16px 16px 16px 15px !important;
+	}
+}
+.bgbian{
+	background-color: #27c24c;
+}

@@ -1,0 +1,102 @@
+<style>
+#alertModalCon label.active{
+	background: #3F8BD1;
+}
+</style>
+<div class="modal fade in" id="portalDialog" style="display: block;">
+	<div style="width: 70%; min-width: 800px;" class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" type="button" v-link="{path:'/customer'}">x
+				</button>
+				<template v-if="$route.params.id==-1">
+					<h4 class="modal-title">新增客户信息</h4>
+				</template>
+				<template v-else>
+					<h4 class="modal-title">修改客户信息</h4>
+				</template>
+			</div>
+			<div class="modal-body" id="alertModalCon">
+				<form  @submit.prevent  id="saveForm" action="/customer/save" class="form-horizontal" novalidate>
+					<validator name="validation1">
+						<input type="hidden" name="id" value="{{$route.params.id}}" />
+						<div class="row show-grid">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-4 control-label"> 
+										<b class="red">*</b>
+										客户名称
+									</label>
+									<div class="col-md-8">
+										<input type="text" name="name" class="form-control" 
+										 v-model="name" detect-change="off" detect-blur="off" initial="off" v-validate:name="['required']" />  
+											<label class="error"v-if="$validation1.name.required">客户名称不能为空!	
+											</label>    
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										联系人
+									</label>
+									<div class="col-md-8">
+										<input type="text" name="contacts"class="form-control" v-model="contacts" />  
+									</div>
+								</div>
+							</div>
+						</div>
+
+					  <div class="row show-grid">
+							<div class="col-md-6">
+								 <div class="form-group">
+									<label class="col-md-4 control-label">  
+										电话
+									</label>
+									<div class="col-md-8">
+                                        <input class="form-control" detect-change="off" detect-blur="off" initial="off" type="text" name="phone" v-model="phone" v-validate:phone="['isPhone']"/>		 		
+											<label class="error" v-if="$validation1.phone.isPhone">电话格式不对!
+											</label>
+										 	     
+									</div>
+								</div> 
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										Email
+									</label>
+									<div class="col-md-8">
+										<input class="form-control" detect-change="off" detect-blur="off" initial="off" type="text" name="email" v-model="email" v-validate:email="['isEmail']"/>
+											<label class="error" v-if="$validation1.email.isEmail">邮箱格式不对!
+											</label>										 
+									</div>
+								</div>
+							</div>  
+						</div>
+ 
+						<div class="row show-grid">	
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-md-4 control-label">地址</label>
+									<div class="col-md-8">
+										<textarea class="form-control" rows="3" name="location" v-model="location">
+										</textarea>	
+									</div>
+								</div>
+							</div>
+						</div> 						
+					</validator>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button aria-hidden="true" data-dismiss="modal" class="btn btn-default btn-sm btn-close" type="button" v-link="{path:'/customer'}">取消
+				</button>
+				<button class="btn btn-primary btn-sm ok" type="button"@click="save">确定
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<template v-if="checked">
+    <label class="form-checkbox active"
+    v-bind:class="style">
+	<input type="checkbox"  @click="method" v-model="checked" autocomplete="off" />
+    <input type="hidden" v-model="checked" :name="name" /><span> {{displayName}}</span>
+    </label>
+</template>
+<template v-else>
+    <label class="form-checkbox"
+    v-bind:class="style">
+    <input type="checkbox" v-model="checked" @click="method" autocomplete="off" />
+    <input type="hidden" v-model="checked" :name="name" /><span> {{displayName}}</span>
+    </label>
+</template>

@@ -1,0 +1,38 @@
+<page-title
+	:items="[{ message: '首页',url:'' },{ message: '部门管理',url:'' }]"></page-title>
+
+<div id="departmentRoot" style="padding: 20px 25px 0px; font-size: 14px;">
+	<form @submit.prevent  v-on:onload="search()" id="query-form" class="form-horizontal"
+					 role="form" method="post" action="/department/query">
+		<input type="hidden" name="page_pageNo" id="pageNo" value="1" />
+		<input type="hidden" name="page_pageSize" id="pageSize" value="10" />
+		<input type="hidden" name="page_order" id="order" value="desc" />
+		<input type="hidden" name="page_orderBy" id="orderBy" value="id" />
+						
+		<table border="0" class="juli5 yj3-top anniu1 w100 bgbian  txtcolor">
+		    <td>
+				<h4>部门信息列表</h4>		       
+		        
+		        <button type="button" class="btn btn-tm btn-labeled fa fa-plus" @click="goAdd">新增
+		        </button>
+		        
+		        <button type="button" class="btn btn-tm btn-labeled fa fa-remove" v-on:click="goDel">删除</button>
+		   
+			    <div class="pull-right">
+			            <button type="button" class="btn btn-tm" @click="search()">确定</button>
+			    </div>
+			    <div class=" pull-right w200px">
+			        <input type="text" name="filter_LIKES_name_OR_dataStyle:'width:120px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;'"  placeholder="按部门名称或部门代码搜索" class="form-control bianno">
+			    </div>
+				<!-- Button trigger modal -->
+
+				 
+		    </td>
+		</table>
+	</form>
+
+	<!-- 列表展示 -->
+	<vue-grid  v-ref:grid style="left: 0px; width:100%; text-align:left;" :page="page"  :columns="gridColumns" ></vue-grid>
+
+</div>
+<router-view></router-view> 

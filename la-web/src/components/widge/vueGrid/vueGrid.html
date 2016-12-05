@@ -1,0 +1,115 @@
+<style>
+#panel table {width:100%;table-layout:fixed;}
+
+#panel tr td {white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+</style>
+<div id="panel" class="panel">
+
+                        <table  border="0" cellpadding="0" :class="classz==null?'juli5 zeta-bgcolorb06 w100 zeta-bgcolor-bai2':classz" :style="style==null?'':style " >
+                            <td>
+                            
+                            <table border="0" cellpadding="5" cellspacing="3" class="w100">
+                            
+                           <tr>
+					         
+					              <td v-if="entry.type!='btn'" v-for="entry in columns"
+					               :style="entry.headerStyle==null?'':entry.headerStyle"  :class="entry.headerCls==null?'juli bian3':entry.headerCls"
+					               >
+					            	  <span @click="entry.sortable!=false?sortBy(entry.name):''" v-if="entry.renderHeader!=null" >
+					            	  	{{{entry.displayName}}}
+					            	  </span>
+					            	  
+						              <span @click="entry.sortable!=false?sortBy(entry.name):''" title="{{entry.displayName}}" style="height: 20px;" v-else>{{entry.displayName}}
+						              
+						              </span>
+					             		<span @click="entry.sortable!=false?sortBy(entry.name):''" >
+						              <i v-if="entry.sortable!=false" 
+						                :class="sortOrders[entry.name] > 0 ? 'fa fa-caret-down' : 'fa fa-caret-up'" >
+						              </i>
+						              
+						              </span>
+					            </td>
+					            <td v-if="hideCheckbox==false" width="50" class="juli text-center"><input type="checkbox" name="checkbox1" v-on:click="selectAll" id="checkAll" /></td>
+					          
+					            <td v-if="entry.type=='btn'" v-for="entry in columns"
+					              
+					               :style="entry.headerStyle==null?'':entry.headerStyle" :class="entry.headerCls==null?'':entry.headerCls">
+					            
+					              {{entry.displayName}}
+					              
+					            </td>
+					            
+					          </tr>
+					           <tr  v-for=" 
+					            entry in page.result
+					            
+					            | orderBy sortKey">
+					            
+					            
+					            <td :class="key.dataCls==null?'zeta-bgcolorbai juli bian3 yj3-zuo':key.dataCls" v-if="key.type!='btn'"  v-for="key in columns" >
+					            
+					            <div  v-if="key.render!=null" :style="key.dataStyle==null?'white-space:nowrap;text-overflow:ellipsis;overflow:hidden;':key.dataStyle"  v-html="entry[key.name]">
+              
+					              </div>
+					              <div  title="{{entry[key.name]}}"  :style="key.dataStyle==null?'white-space:nowrap;text-overflow:ellipsis;overflow:hidden;':key.dataStyle" v-else>
+					              {{entry[key.name]}} 
+					              </div>
+					              
+					            </td>
+					             <td  v-if="hideCheckbox==false" class="zeta-bgcolorbai juli bian3 text-center"><input type="checkbox" name="checkbox2" value="{{entry.id}}" id="checkbox2" /></td>
+					         	
+					            <td @click="onBtnClick(key.onclick,entry)" :class="key.dataCls==null?'zeta-bgcolorbai juli bian3 text-center yj3-you':key.dataCls" v-if="key.type=='btn'"  v-for="key in columns" >
+					            	<template v-if="key.render!=null">
+					            		<div v-html="entry[key.name]">
+					            		</div>
+					            	</template>
+					            	<template v-else>
+					            		<i :class="key.btnCls" ></i>
+					            	</template>					            					              
+					            </td>
+					           
+					          </tr>
+					         
+					          <tr  v-if="page.result.length==0">
+					        
+									<td :class="key.dataCls==null?'zeta-bgcolorbai juli bian3 yj3-zuo':key.dataCls"   v-for="key in columns" >
+					           <div v-if="$index==0">暂无数据</div>
+					            </td>
+					             <td  v-if="hideCheckbox==false" class="zeta-bgcolorbai juli bian3 text-center"></td>
+					         	
+					          </tr>
+					        
+                            </table>
+                            
+                            </td>
+                        </table>
+                                    
+                        <table v-if="hidePagebtn==false" border="0" class="zeta-bgcolorbai juli5 yj3-down w100">
+                                    <td class="font16">当前第 {{page.pageNo}} 页;共{{page.totalPages}}页 显示: <span v-if="page.totalCount>0">{{page.first}}</span><span v-else>0</span> 到 <span v-if="page.hasNext==false"><span v-if="page.totalCount>0">{{page.totalCount}}</span><span v-else>0</span></span><span v-else>{{page.pageSize * page.pageNo}}</span> 条记录,共: <span v-if="page.totalCount>0">{{page.totalCount}}</span><span v-else>0</span> 条记录 </td>
+                                    <td>
+                                        <div class="btn-group" data-toggle="buttons">
+                                          <label class="btn btn-default active btn-sm" @click="setPageSize(10)">
+                                            <input type="radio" name="options" id="option1"  autocomplete="off" checked>10条
+                                          </label>
+                                          <label @click="setPageSize(20)" class="btn btn-default btn-sm">
+                                            <input type="radio" name="options" id="option2"  autocomplete="off">20条
+                                          </label>
+                                          <label @click="setPageSize(50)" class="btn btn-default btn-sm">
+                                            <input type="radio" name="options" id="option3"  autocomplete="off">50条
+                                          </label>
+                                        </div>
+
+                                    </td>
+                                    <td class="text-right">
+										<ul class="pagination pagination-sm" style="margin:1px 0 0 0;">
+										<li class="page-first" :class="page.hasPre==true?'':'disabled'"><a href="javascript:" @click="page.hasPre==true?goFirst():''">&lt;&lt;</a></li>
+										<li class="page-pre" :class="page.hasPre==true?'':'disabled'"><a href="javascript:" @click="page.hasPre==true?goPre():''">&lt;</a></li>
+										<li class="page-next" :class="page.hasNext==true?'':'disabled'"><a href="javascript:" @click="page.hasNext==true?goNext():''">&gt;</a></li>
+										<li class="page-last" :class="page.hasNext==true?'':'disabled'"><a href="javascript:" @click="page.hasNext==true?goLast():''">&gt;&gt;</a></li>
+										</ul>
+                                    </td>
+                        </table>     
+                        </div> 
+                    <!------------------------------------------------->
+				
+				</div>
